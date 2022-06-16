@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import { MinimalButton, Spinner, TextBox } from "@react-pdf-viewer/core";
-import {
-	Match,
-	NextIcon,
-	PreviousIcon,
-	RenderSearchProps,
-	SearchPlugin,
-} from "@react-pdf-viewer/search";
+import { NextIcon, PreviousIcon, searchPlugin } from "@react-pdf-viewer/search";
 
 const SearchStatus = {
 	NotSearchedYet: 1,
@@ -14,12 +8,11 @@ const SearchStatus = {
 	FoundResults: 3,
 };
 
-const SearchSidebar = ({ searchPluginInstance }) => {
-	const [searchStatus, setSearchStatus] = React.useState(
-		SearchStatus.NotSearchedYet
-	);
-	const [matches, setMatches] = React.useState([]);
+const SearchSidebar = () => {
+	const [searchStatus, setSearchStatus] = useState(SearchStatus.NotSearchedYet);
+	const [matches, setMatches] = useState([]);
 
+	const searchPluginInstance = searchPlugin();
 	const { Search } = searchPluginInstance;
 
 	const renderMatchSample = (match) => {
